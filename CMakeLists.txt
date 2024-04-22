@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.27)
 project (trie LANGUAGES CXX)
 
-set(SOURCES src/main.cpp)
+set(SOURCES src/main.cpp src/trie.cpp)
 
 add_executable(trie ${SOURCES})
 target_include_directories(trie PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes)
