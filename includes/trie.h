@@ -3,15 +3,18 @@
 
 #include "node.h"
 #include <fstream>
+#include <vector>
 
 class Trie {
+private:
+  std::vector<std::string> split(std::string buffer);
 public:
   Node *root;
 
   void insert_word(std::string word);
-  void display_trie(Node *root, std::string str) const;
+  void get_suggestions(Node *root, std::string str,
+                       std::vector<std::string> &suggestions) const;
   void auto_complete(std::string prefix) const;
-private:
 };
 
 #endif
