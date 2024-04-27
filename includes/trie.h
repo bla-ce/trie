@@ -8,6 +8,7 @@
 class Trie {
 private:
   std::vector<std::string> split(std::string buffer);
+  void free_children(Node *node);
 public:
   Node *root;
 
@@ -15,6 +16,8 @@ public:
   void get_suggestions(Node *root, std::string str,
                        std::vector<std::string> &suggestions) const;
   void auto_complete(std::string prefix) const;
+
+  ~Trie();
 };
 
 #endif

@@ -14,8 +14,12 @@ void Trie::insert_word(std::string word) {
   for(const auto &word : words) {
     for (const char &ch : word) {
       if(curr->children[ch] == nullptr) {
-        Node *new_node{new Node};
+        Node *new_node{new Node{}};
         new_node->value = ch;
+
+        for(auto &node_ch : new_node->children) {
+          node_ch = nullptr;
+        }
 
         curr->children[ch] = new_node;
       }
@@ -78,5 +82,22 @@ void Trie::get_suggestions(Node *root, std::string str, std::vector<std::string>
     if (ch != nullptr) {
       get_suggestions(ch, str + ch->value, suggestions);
     }
+  }
+}
+
+
+Trie::~Trie(){
+  free_children(root); 
+  delete root;
+}
+
+void Trie::free_children(Node *node) {
+  if(node == nullptr) {
+    return;
+  }
+
+  for(auto &child : node->children) {
+    free_children(child);
+    delete child;
   }
 }

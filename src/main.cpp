@@ -1,19 +1,18 @@
-#include "../includes/trie.h"
 #include "../includes/fruits.cpp"
+#include "../includes/trie.h"
+#include <cassert>
 #include <iostream>
 
 int main(int argc, char *argv[]) {
-  Trie *trie{new Trie};
+  Trie trie{};
 
-  Node *root{new Node};
-  trie->root = root;
+  Node *root{new Node{}};
+  trie.root = root;
 
-  if(fruits_list.size() == 0) {
-    exit(-1);
-  }
+  assert(fruits_list.size() > 0 && "Sample data is empty");
 
-  for(const auto &fruit : fruits_list) {
-    trie->insert_word(fruit);
+  for (const auto &fruit : fruits_list) {
+    trie.insert_word(fruit);
   }
 
   std::string prefix{};
@@ -21,7 +20,7 @@ int main(int argc, char *argv[]) {
   std::cin >> prefix;
 
   std::cout << "\nAuto-suggestions: \n";
-  trie->auto_complete(prefix);
+  trie.auto_complete(prefix);
 
   return 0;
 }
